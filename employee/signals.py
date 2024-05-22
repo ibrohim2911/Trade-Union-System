@@ -5,4 +5,11 @@ from .models import Employee
 @receiver(post_save, sender=Employee)
 def calculate_point(sender, instance, created, *args, **kwargs):
     if created:
-        pass
+        print(instance.first_name)
+        print(instance.is_married)
+        print(instance.handicapped)
+        print(is_role.role)
+        try:
+            print(instance.organization)
+        except:
+            pass
