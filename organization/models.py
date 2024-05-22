@@ -1,3 +1,17 @@
-from django.db import models
+from django.contrib.auth.models import AbstractUser
+from employee.models import Employee
+from django.db import models as m
+class Organization(AbstractUser):
+    name = m.CharField()
+    email = m.EmailField(unique=True)
+    money = m.IntegerField()
+    monthly_money = m.IntegerField()
+    employees = m.ForeignKey(Employee, on_delete=m.CASCADE, related_name="employee_for_organization")
+    username = None  
+    USERNAME_FIELD = 'email'  
+    REQUIRED_FIELDS = []  
 
-# Create your models here.
+    def __str__(self):
+        return self.name
+
+    
