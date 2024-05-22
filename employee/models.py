@@ -1,34 +1,57 @@
-from django.db import models
+from django.db import models as m
 from organization.models import Organization
 # Create your models here.
-class Employee(models.Model):    #xodim uchun class/model yaratildi va malumotlari olindi
-    
-    class handicappedChoice(models.TextChoices):
-        zero = "0", "Nogiron emas"
-        second = "3", "2-darajali"
-        third = "2", "3-darajali"
-    class roleChoice(models.TextChoices):
-        none = "0", "nazoratga olinmagan"
-        iron = "4", "temir daftari"
-        women = "4", "ayollar va yoshlar daftari"
 
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=20)
-    age = models.DateField()
-    is_married = models.BooleanField(default=False)
-    is_divorced = models.BooleanField(default=False)
-    salary = models.IntegerField()
-    hired_at = models.DateField()
-    passport_id = models.CharField(max_length=20)
-    handicapped = models.CharField(max_length=1, choices=handicappedChoice.choices, default=handicappedChoice.zero)
-    role = models.CharField(max_length=100, choices=roleChoice.choices,default=roleChoice.none)
-    current_health = models.CharField(max_length=100)
-    has_illness = models.BooleanField(default=True)
-    family_health = models.CharField(max_length=100)
-    underages = models.IntegerField()
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True)
-    overall_bal = models.IntegerField(default=0)
+class Role(m.Model):
+    in_role = m.CharField(max_length=100)
+    proof = m.ImageField()
 
+class GenderChoices(m.TextChoices):
+    Erkak = "E", "Erkak"
+    Ayol = "A", "Ayol"
+
+class Family_status(m.Model):
+    status = m.CharField(max_length=100)
+    proof = m.ImageField()
+
+class Handicapped(m.Model):
+    how_handicapped = m.CharField(max_length=100)
+    proof=m.ImageField()
+
+class Illness(m.Model):
+    how_ill = m.CharField(max_length=100)
+    proof = m.ImageField()
+
+class underageimg(m.Model):
+    img = m.ImageField()
+
+class Underages(m.Model):
+    quantity = m.IntegerField()
+    proof = m.ManyToManyField(underageimg, related_name="underageimgs")
+
+
+class Employee(m.Model):    #xodim uchun class/model yaratildi va malumotlari olindi
+    fio = m.CharField(max_length=300)
+    phone_number = m.BigIntegerField(unique=True)
+    age = m.DateField()
+    gender=m.CharField(max_length=1, choices=GenderChoices.choices, default=GenderChoices.Erkak)
+    family_status = m.ForeignKey(Family_status, on_delete=m.CASCADE, null=True, blank=True)
+    salary = m.IntegerField()
+    hired_at = m.DateField()
+    passport_id = m.IntegerField(unique=True)
+    handicapped = m.ForeignKey(Handicapped, on_delete=m.CASCADE, null=True, blank=True)
+    role = m.ForeignKey(Role, on_delete=m.CASCADE, null=True, blank=True)
+    job = m.CharField(max_length=100)
+    illness = m.ForeignKey(Illness, on_delete=m.CASCADE, null=True, blank=True)
+    underages = m.ForeignKey(Underages, on_delete=m.CASCADE, null=True, blank=True)
+    organization = m.ForeignKey(Organization, on_delete=m.CASCADE)
+    # application = m.ForeignKey()
+    work_starts_at = m.TimeField()
+    work_ends_at = m.TimeField() 
+    taken_money= m.PositiveBigIntegerField(default=0)
+    used_money= m.PositiveBigIntegerField(default=0)
     def __str__(self):  #obyektga string qaytaradi, shu obyekta o'tgan xodim nomini qaytaradi
         return f"{self.first_name} {self.last_name}"
+
+
+

@@ -20,7 +20,9 @@ class EmployeeDelete(DeleteView):
 class EmployeeDetail(DetailView):
     model = Employee
 
-
+def pointCalc(model):
+    gx=0
+    mp=0
 
 class EmployeeList(ListView):
     model = Employee
