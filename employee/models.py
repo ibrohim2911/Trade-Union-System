@@ -51,7 +51,7 @@ class Employee(m.Model):    #xodim uchun class/model yaratildi va malumotlari ol
     taken_money= m.PositiveBigIntegerField(default=0)
     used_money= m.PositiveBigIntegerField(default=0)
     def __str__(self):  #obyektga string qaytaradi, shu obyekta o'tgan xodim nomini qaytaradi
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.fio}"
 
 
 
