@@ -14,7 +14,6 @@ class Employee(models.Model):    #xodim uchun class/model yaratildi va malumotla
     phone_number = models.CharField(max_length=20)
     age = models.DateField()
     is_married = models.BooleanField(default=False)
-    children = models.IntegerField(default=0)
     is_divorced = models.BooleanField(default=False)
     salary = models.IntegerField()
     hired_at = models.DateField()
