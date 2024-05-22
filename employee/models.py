@@ -5,7 +5,6 @@ class Employee(models.Model):    #xodim uchun class/model yaratildi va malumotla
     
     class handicaptedChoice(models.TextChoices):
         zero = "0", "Nogiron emas"
-        first = "1", "1-darajali"
         second = "2", "2-darajali"
         third = "3", "3-darajali"
 
