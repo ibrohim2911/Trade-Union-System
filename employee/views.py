@@ -29,7 +29,7 @@ class EmployeeList(ListView):
 
 class EmployeeUpdate(UpdateView):
     model = Employee
-    fields=Employee.get_editable_fields()
+    fields = '__all__'
     success_url = reverse_lazy("employee")
 
 
