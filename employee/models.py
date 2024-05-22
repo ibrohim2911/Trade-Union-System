@@ -3,10 +3,14 @@ from organization.models import Organization
 # Create your models here.
 class Employee(models.Model):    #xodim uchun class/model yaratildi va malumotlari olindi
     
-    class handicaptedChoice(models.TextChoices):
+    class handicappedChoice(models.TextChoices):
         zero = "0", "Nogiron emas"
-        second = "2", "2-darajali"
-        third = "3", "3-darajali"
+        second = "3", "2-darajali"
+        third = "2", "3-darajali"
+    class roleChoice(models.TextChoices):
+        none = "0", "nazoratga olinmagan"
+        iron = "4", "temir daftari"
+        women = "4", "ayollar va yoshlar daftari"
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -17,10 +21,10 @@ class Employee(models.Model):    #xodim uchun class/model yaratildi va malumotla
     salary = models.IntegerField()
     hired_at = models.DateField()
     passport_id = models.CharField(max_length=20)
-    handicapped = models.CharField(max_length=1, choices=handicaptedChoice.choices, default=handicaptedChoice.zero)
-    role = models.CharField(max_length=100)
+    handicapped = models.CharField(max_length=1, choices=handicappedChoice.choices, default=handicappedChoice.zero)
+    role = models.CharField(max_length=100, choices=roleChoice.choices,default=roleChoice.none)
     current_health = models.CharField(max_length=100)
-    illness = models.CharField(max_length=100)
+    has_illness = models.BooleanField(default=True)
     family_health = models.CharField(max_length=100)
     underages = models.IntegerField()
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True)
