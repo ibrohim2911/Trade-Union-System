@@ -10,7 +10,7 @@ class UnderagesFiles(admin.TabularInline):
 
 @admin.register(models.Underages)
 class UnderagesAdmin(admin.ModelAdmin):
-    list_display = ("pk", "full_name")
+    list_display = ["pk"]
 
     inlines = [UnderagesFiles]
 

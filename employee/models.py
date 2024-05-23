@@ -4,6 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 from organization.models import Organization
+from django.contrib.auth.models import User
 from utils.models import BaseModel
 from utils import choices
 
@@ -11,7 +12,7 @@ from utils import choices
 
 
 class Role(BaseModel):  # temir daftar
-    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=64, choices=choices.roleChoice.choices, default=choices.roleChoice.NOT)
     file = models.FileField(
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
@@ -20,7 +21,7 @@ class Role(BaseModel):  # temir daftar
 
 
 class FamilyStatus(BaseModel):  # Oilaviy holati
-    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=64, choices=choices.familiyStatusChoice.choices, default=choices.familiyStatusChoice.NOT)
     file = models.FileField(
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
@@ -29,7 +30,7 @@ class FamilyStatus(BaseModel):  # Oilaviy holati
 
 
 class Handicapped(BaseModel):  # nogironligi
-    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=64, choices=choices.handicappedChoices.choices, default=choices.handicappedChoices.NOT)
     file = models.FileField(
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
@@ -38,7 +39,7 @@ class Handicapped(BaseModel):  # nogironligi
 
 
 class Illness(BaseModel):  # Kasalligi
-    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=64, choices=choices.illnessChoice.choices, default=choices.illnessChoice.NOT)
     file = models.FileField(
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
@@ -52,13 +53,13 @@ class Employee(BaseModel):  # xodim uchun class/model yaratildi va malumotlari o
     phone_number = PhoneNumberField(unique=True, region="UZ")
     gender = models.CharField(
         max_length=128, choices=choices.GenderChoices.choices, default=choices.GenderChoices.MALE)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     age = models.IntegerField(default=0)
     salary = models.IntegerField(default=0)
     passport = models.CharField(max_length=9, unique=True)
 
     taken_money = models.DecimalField(
-        max_digits=10, decimal_places=2)  # Qancha pul olingan
+        max_digits=10, decimal_places=2, default=0)  # Qancha pul olingan
     used_money = models.DecimalField(
         max_digits=10, decimal_places=2)  # Unga ajratilgan pul
     hired_at = models.DateField()  # ishga kirgan vaqti
@@ -68,12 +69,11 @@ class Employee(BaseModel):  # xodim uchun class/model yaratildi va malumotlari o
 
     handicapped = models.ForeignKey(
         Handicapped, on_delete=models.CASCADE, related_name="handicapped")
+
     role = models.ForeignKey(
         Role, on_delete=models.CASCADE, related_name="role")
     illness = models.ForeignKey(
         Illness, on_delete=models.CASCADE, related_name="illness")
-    organization = models.ForeignKey(
-        Organization, on_delete=models.CASCADE, related_name="organization")
     family_status = models.ForeignKey(
         FamilyStatus, on_delete=models.CASCADE, related_name="status")
 
