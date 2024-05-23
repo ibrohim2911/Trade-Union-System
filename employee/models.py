@@ -57,7 +57,7 @@ class Employee(BaseModel):  # xodim uchun class/model yaratildi va malumotlari o
     age = models.IntegerField(default=0)
     salary = models.IntegerField(default=0)
     passport = models.CharField(max_length=9, unique=True)
-
+    points = models.IntegerField(default=0)
     taken_money = models.DecimalField(
         max_digits=10, decimal_places=2, default=0)  # Qancha pul olingan
     used_money = models.DecimalField(

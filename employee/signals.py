@@ -1,29 +1,59 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from datetime import datetime
+from .models import Employee
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from datetime import datetime
 from .models import Employee
 
 @receiver(post_save, sender=Employee)
-def calculate_point(sender, instance, created, *args, **kwargs):
-    if created or not created:
-        print(instance.full_name, type(instance.full_name))
-        print(instance.job, type(instance.job))
-        print(instance.phone_number, type(instance.phone_number))
-        print(instance.gender, type(instance.gender))
-        print(instance.user, type(instance.user))
-        print(instance.age, type(instance.age))
-        print(instance.salary, type(instance.salary))
-        print(instance.passport, type(instance.passport))
-        print(instance.taken_money, type(instance.taken_money))
-        print(instance.used_money, type(instance.used_money))
-        print(instance.hired_at, type(instance.hired_at))
-        print(instance.work_starts_at, type(instance.work_starts_at))
-        print(instance.work_ends_at, type(instance.work_ends_at))
-        print(instance.handicapped, type(instance.handicapped))
-        print(instance.role, type(instance.role))
-        print(instance.illness, type(instance.illness))
-        print(instance.family_status, type(instance.family_status))
+def calculate_point(sender, instance, created, **kwargs):
+    # Check if the flag is set to prevent recursive save
+    if hasattr(instance, '_signal_processing'):
+        return
+    print(instance.handicapped, type(instance.handicapped))
+    # Set the flag to indicate the instance is being processed
+    instance._signal_processing = True
 
-        try:
-            print(instance.organization)
-        except:
-            pass
+    x = 0
+    p = 0
+    if instance.gender == 'Erkak':
+        x = 1
+    else:
+        x = 1.3
+    p = instance.age
+
+ #   if instance.handicapped and int(instance.handicapped.level) == 2:
+ #       p = p + 2
+  #  elif instance.handicapped == "3":
+  #      p = p + 3
+    if instance.role == "3":
+        p = p + 3
+    elif instance.role == "4":
+        p = p + 4
+    if instance.illness == "3":
+        p = p + 3
+    if instance.family_status == "1":
+        p = p + 1
+    elif instance.family_status == "2":
+        p = p + 2
+
+    instance.points = p * x
+
+    # Save the instance with the updated points
+    instance.save(update_fields=['points'])
+
+    # Print the points (for debugging purposes)
+    print(instance.points)
+
+    try:
+        print(instance.organization)
+    except:
+        pass
+
+    # Clean up the flag after saving
+    del instance._signal_processing
+
+    return instance
