@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6>$Organization name$</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          ishchilar
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          kasbi
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Kasallig
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          ishga olingan sana
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          delete
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <a href="#">
+                          <!-- backend uchun, shu userni ma'lumotlari profile pageda chiqishi kerak -->
+
+                          <td>
+                            <div class="d-flex px-2 py-1">
+                              <div>
+                                <img
+                                  src="../assets/img/team-3.jpg"
+                                  class="avatar avatar-sm me-3"
+                                  alt="user"
+                                />
+                              </div>
+                              <div
+                                class="d-flex flex-column justify-content-center"
+                              >
+                                <h6 class="mb-0 text-sm">$FIO$</h6>
+                                <p class="text-xs text-secondary mb-0">
+                                  $telefon raqami$
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <p class="text-xs font-weight-bold mb-0">$kasbi$</p>
+                          </td>
+                          <td class="align-middle text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0">
+                              $soglom$
+                            </p>
+                          </td>
+                          <td class="align-middle text-center">
+                            <span
+                              class="text-secondary text-xs font-weight-bold"
+                              >$ishga kirgan sana$</span
+                            >
+                          </td>
+                          <td class="align-middle text-center">
+                            <button
+                              data-bs-toggle="modal"
+                              data-bs-target="#userModal"
+                              class="btn rounded-pill btn-outline-danger"
+                            >
+                              x
+                            </button>
+                          </td>
+                        </a>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- pagination start -->
+                  <nav
+                    aria-label="Page navigation example"
+                    class="w-100 mt-4 d-flex justify-content-center"
+                  >
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <!-- pagination end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- table for applications -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6>Arizalar
+                </h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Ariza yozuvchi
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          sarlavha
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          holati
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          ariza yozilgan sana
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div>
+                              <img
+                                src="../assets/img/team-3.jpg"
+                                class="avatar avatar-sm me-3"
+                                alt="user"
+                              />
+                            </div>
+                            <div
+                              class="d-flex flex-column justify-content-center"
+                            >
+                              <h6 class="mb-0 text-sm">$FIO$</h6>
+                              <p class="text-xs text-secondary mb-0">
+                                $telefon raqami$
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">$sarlavha$</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <p class="text-xs font-weight-bold mb-0">$ariza holati$</p>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-secondary text-xs font-weight-bold"
+                            >$ariza yozilgan sana$</span
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- pagination start -->
+                  <nav
+                    aria-label="Page navigation example"
+                    class="w-100 mt-4 d-flex justify-content-center"
+                  >
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <!-- pagination end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modal for accept delete process -->
+      <div class="modal" tabindex="-1" id="userModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Xodim ma'lumotlarini o'chirish</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>$Xodim FIO$</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                bekor qlish
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                o'chirish
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="fixed-plugin">
+      <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+        <i class="fa fa-cog py-2"> </i>
+      </a>
+      <div class="card shadow-lg">
+        <div class="card-header pb-0 pt-3">
+          <div class="float-start">
+            <h5 class="mt-3 mb-0">Configurator</h5>
+          </div>
+          <div class="float-end mt-4">
+            <button
+              class="btn btn-link text-dark p-0 fixed-plugin-close-button"
+            >
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+          <!-- End Toggle Button -->
+        </div>
+{% endblock content %}

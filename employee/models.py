@@ -17,7 +17,7 @@ class Role(BaseModel):  # temir daftar
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.category
 
 
 class FamilyStatus(BaseModel):  # Oilaviy holati
@@ -26,7 +26,7 @@ class FamilyStatus(BaseModel):  # Oilaviy holati
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.category
 
 
 class Handicapped(BaseModel):  # nogironligi
@@ -35,7 +35,7 @@ class Handicapped(BaseModel):  # nogironligi
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.category
 
 
 class Illness(BaseModel):  # Kasalligi
@@ -44,7 +44,7 @@ class Illness(BaseModel):  # Kasalligi
         upload_to="role/", validators=[FileExtensionValidator(allowed_extensions=["pdf", "jpg", "jpeg"])], null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.category
 
 
 class Employee(BaseModel):  # xodim uchun class/model yaratildi va malumotlari olindi
@@ -57,7 +57,7 @@ class Employee(BaseModel):  # xodim uchun class/model yaratildi va malumotlari o
     age = models.IntegerField(default=0)
     salary = models.IntegerField(default=0)
     passport = models.CharField(max_length=9, unique=True)
-
+    points = models.IntegerField(default=0)
     taken_money = models.DecimalField(
         max_digits=10, decimal_places=2, default=0)  # Qancha pul olingan
     used_money = models.DecimalField(
