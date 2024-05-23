@@ -58,7 +58,7 @@ class Employee(BaseModel):  # xodim uchun class/model yaratildi va malumotlari o
     passport = models.CharField(max_length=9, unique=True)
 
     taken_money = models.DecimalField(
-        max_digits=10, decimal_places=2)  # Qancha pul olingan
+        max_digits=10, decimal_places=2, default=0)  # Qancha pul olingan
     used_money = models.DecimalField(
         max_digits=10, decimal_places=2)  # Unga ajratilgan pul
     hired_at = models.DateField()  # ishga kirgan vaqti

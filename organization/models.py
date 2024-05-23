@@ -8,7 +8,7 @@ class Organization(models.Model):
     
     organization_name = models.CharField(max_length=200)
     phone_number = models.BigIntegerField()
-    money = models.PositiveBigIntegerField(default=0)
+    money = models.ForeignKey(money_history, on_delete=models.PROTECT)
     monthly_money = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 

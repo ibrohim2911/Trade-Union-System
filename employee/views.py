@@ -21,8 +21,8 @@ class EmployeeDetail(DetailView):
     model = Employee
 
 def pointCalc(model):
-    gx=0
-    mp=0
+    pass
+
 
 class EmployeeList(ListView):
     model = Employee
